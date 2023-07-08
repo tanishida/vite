@@ -1,0 +1,8 @@
+{
+  "name": "dev",
+  "version": "yarn init vite@latest",
+  "main": "index.js",
+  "repository": "https://github.com/tanishida/vite",
+  "author": "tanishida",
+  "license": "MIT"
+}
