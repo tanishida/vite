@@ -1,9 +1,13 @@
 import { FC } from 'react';
-import { useDom } from '../hooks/useDom';
+import { Categories } from '../Categories';
+import { useCategories } from '../hooks/useCategories';
 
 export const InputImages: FC = () => {
-  useDom("https://www.dbs-cardgame.com/fw/jp/cardlist");
+  const categories = useCategories();
+
   return (
-    <></>
+    <>
+      <Categories categories={categories} />
+    </>
   );
 }
