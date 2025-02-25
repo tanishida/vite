@@ -1,13 +1,14 @@
 import { FC } from 'react';
 import { Categories } from '../Categories';
-import { useCategories } from '../hooks/useCategories';
+import { CardList } from '../CardList';
+import { Box } from '@mui/material';
 
 export const InputImages: FC = () => {
-  const categories = useCategories();
 
   return (
-    <>
-      <Categories categories={categories} />
-    </>
+    <Box>
+      <Categories />
+      <CardList />
+    </Box>
   );
 }

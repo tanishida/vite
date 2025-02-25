@@ -10,7 +10,10 @@ export const categoriesModule = createSlice({
   initialState,
   reducers: {
     setData: (state, action: PayloadAction<Caterogires>) => {
-      state.categories = action.payload.categories ;
+      state.categories = action.payload.categories.filter((a) => a.value !== "") ;
     },
+    setSelected: (state, action: PayloadAction<string>) => {
+      state.selectedCategory = action.payload
+    }
   },
 });

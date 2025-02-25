@@ -7,4 +7,5 @@ export interface Caterogires {
         name: string;
         value: string;
     }[];
+    selectedCategory?: string;
 };

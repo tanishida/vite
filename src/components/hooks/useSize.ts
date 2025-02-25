@@ -25,18 +25,24 @@ export const useSize = () => {
       ;
 
     const height = () => {
-        if (displayWidthPattern === "xs") return 240;
+        if (displayWidthPattern === "xs") return 180;
         if (displayWidthPattern === "sm") return 250;
         return 250;
     };
     const width = () => {
-      if (displayWidthPattern === "xs") return 170;
+      if (displayWidthPattern === "xs") return 110;
       if (displayWidthPattern === "sm") return 180;
       return 180
     }
+    const textFieldWidth = () => {
+      if (displayWidthPattern === "xs") return "360px";
+      return "540px";
+    }
     return {
         width: width(),
-        height: height()
-};
+        height: height(),
+        textFieldWidth: textFieldWidth(),
+        displayWidthPattern: displayWidthPattern
+    };
   }
   

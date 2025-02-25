@@ -1,33 +1,39 @@
 import { FC } from 'react';
-import {ImageList, ImageListItem} from '@mui/material';
+import {ImageList, ImageListItem, Box, Button} from '@mui/material';
 import { useSize } from '../hooks/useSize';
+import { useAppSelector } from '../../hooks/useAppSelector';
+import { useAppDispatch } from '../../hooks/useAppDispatch';
 
 export const OutputImage: FC = () => {
-    const { height, width } = useSize();
+    const { height, width, displayWidthPattern } = useSize();
+    const dispatch = useAppDispatch()
+    const selectedCards = useAppSelector(({cards}) => cards.selectedCards);
+
+    if (!selectedCards) return <></>
 
   return (
-    <ImageList cols={3} rowHeight={height}>
-      {itemDataMock.map((v, i) => (
+    <Box>
+    <ImageList sx={{}} cols={3}>
+      {selectedCards.map((v, i) => (
         <ImageListItem sx={{height: height, width: width}} key={i}>
           <img
-            src={v}
+            src={v.url}
             alt={`card-${i + 1}`}
             loading="lazy"
+            onClick={() => window.open(v.url)}
           />
         </ImageListItem>
       ))}
     </ImageList>
+    <Button
+      sx={{
+        display: selectedCards.length === 0 ? "none" : undefined,
+        position: "fixed",
+        bottom: "1%",
+        right: displayWidthPattern === "xs" ? "2%" : "10%",
+        color: "#000000",
+        background: "#00ff00"
+    }}>{"生成"}</Button>
+    </Box>
   );
 }
-
-const itemDataMock = [
-  "https://www.dbs-cardgame.com/fw/images/cards/card/jp/FB05-006_p1.webp",
-  "https://www.dbs-cardgame.com/fw/images/cards/card/jp/FB04-006_p1.webp",
-  "https://www.dbs-cardgame.com/fw/images/cards/card/jp/FB03-006.webp",
-  "https://www.dbs-cardgame.com/fw/images/cards/card/jp/FB02-006.webp",
-  "https://www.dbs-cardgame.com/fw/images/cards/card/jp/FB01-006.webp",
-  "https://www.dbs-cardgame.com/fw/images/cards/card/jp/FB05-009_p1.webp",
-  "https://www.dbs-cardgame.com/fw/images/cards/card/jp/FB02-007.webp",
-  "https://www.dbs-cardgame.com/fw/images/cards/card/jp/FB01-008.webp",
-  "https://www.dbs-cardgame.com/fw/images/cards/card/jp/FB05-012.webp"
-];

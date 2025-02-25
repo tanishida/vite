@@ -1,6 +1,8 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { categoriesModule }  from "./categories";
 import { categoriesSagaModule } from "./sagas/categories";
+import { cardsModule } from "./cards";
+import { cardsSagaModule } from "./sagas/cards";
 import createSagaMiddleware from 'redux-saga';
 import rootSaga from '../redux/sagas/sagas';
 
@@ -10,11 +12,16 @@ export const actionCreator = {
   catogoriesPage: {
     ...categoriesModule.actions,
     ...categoriesSagaModule.actions
+  },
+  cardsPage: {
+    ...cardsModule.actions,
+    ...cardsSagaModule.actions
   }
 }
 
 const reducer = {
   categories: categoriesModule.reducer,
+  cards: cardsModule.reducer
 }
 
 export const store = configureStore({
