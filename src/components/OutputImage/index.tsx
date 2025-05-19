@@ -9,12 +9,12 @@ import SearchIcon from '@mui/icons-material/Search';
 import CollectionsIcon from '@mui/icons-material/Collections';
 
 export const OutputImage: FC = () => {
-    const { height, width } = useSize();
-    const dispatch = useAppDispatch()
-    const {selectedCards, isLoading} = useCards();
-    const selectedMultipleCategory = useAppSelector(({categories}) => categories.selectedMultipleCategory);
-    if (!selectedCards) return <></>
+  const { height, width } = useSize();
+  const dispatch = useAppDispatch()
+  const {selectedCards, isLoading} = useCards();
+  const selectedMultipleCategory = useAppSelector(({categories}) => categories.selectedMultipleCategory);
 
+  if (!selectedCards) return <></>;
   return (
     <Box sx={{display: "flex", justifyContent: "center", alignItems: "center", flexDirection: "column"}}>
     <ImageList sx={{}} cols={3}>
@@ -37,7 +37,7 @@ export const OutputImage: FC = () => {
         }
       }}
       sx={{
-        display: selectedMultipleCategory?.length === 0 || isLoading ? "none" : undefined,
+        display: selectedMultipleCategory === undefined || selectedMultipleCategory?.length === 0 || isLoading ? "none" : undefined,
         position: "fixed",
         bottom: "90%",
         left: "82%",

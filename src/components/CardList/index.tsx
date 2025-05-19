@@ -22,7 +22,7 @@ export const CardList: FC = () => {
       sx={{maxWidth: textFieldWidth, top: 0, zIndex: 1, margin: "20px"}}
       limitTags={9}
       disableCloseOnSelect
-      disabled={selectedMultipleCategory?.length === 0 || categories.length === 0 || isLoading}
+      disabled={selectedMultipleCategory?.length === 0 || categories.length === 0 || isLoading || cards.length === 0}
       noOptionsText={"見つかりません"}
       isOptionEqualToValue={(option, value) => 
         option.url === value.url

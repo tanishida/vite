@@ -19,7 +19,6 @@ export const MultipleCategories: FC = () => {
         isOptionEqualToValue={(option, value) => option.value === value.value}
         getOptionLabel={(category) => category.name}
         options={[{name: "全て", value: "all"}].concat(categories)}
-        value={selectedMultipleCategory}
         multiple
         disableCloseOnSelect
         noOptionsText={"見つかりません"}
