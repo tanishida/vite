@@ -1,9 +1,9 @@
-import {all, fork} from 'redux-saga/effects';
+import { all, fork } from 'typed-redux-saga';
 import {categoriesSaga} from './categories';
 import {cardsSaga} from './cards';
 
 export default function* rootSaga() {
-  yield all([
+  yield* all([
     fork(categoriesSaga), 
     fork(cardsSaga)
   ]);

@@ -16,7 +16,10 @@ async function getData() {
 function* handleGetData(_: ReturnType<typeof actionCreators.getData>) {
   try {
     const res = yield* call(getData)
-    yield* put(actionCreator.catogoriesPage.setData(res.data))
+    if (res.status === 200) {
+      yield* put(actionCreator.categoriesPage.setData(res.data))
+      return;
+    }
   } catch (error) {
     console.log(error);
   }

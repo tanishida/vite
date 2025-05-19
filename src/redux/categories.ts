@@ -1,8 +1,8 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { Caterogires } from "../models/categories";
+import { Caterogires, CategoryDetail } from "../models/categories";
 
 const initialState: Caterogires = {
-  categories: []
+  categories: [],
 }
 
 export const categoriesModule = createSlice({
@@ -10,10 +10,16 @@ export const categoriesModule = createSlice({
   initialState,
   reducers: {
     setData: (state, action: PayloadAction<Caterogires>) => {
-      state.categories = action.payload.categories.filter((a) => a.value !== "") ;
+      state.categories = action.payload.categories.filter((a) => a.value !== "");
     },
-    setSelected: (state, action: PayloadAction<string>) => {
+    setSelected: (state, action: PayloadAction<CategoryDetail>) => {
       state.selectedCategory = action.payload
+    },
+    setSelectedMultipleData: (state, action: PayloadAction<CategoryDetail[]>) => {
+      state.selectedMultipleCategory = action.payload
+    },
+    clearSelectedMultipleData: (state) => {
+      state.selectedMultipleCategory = undefined
     }
   },
 });

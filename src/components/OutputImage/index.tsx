@@ -1,18 +1,22 @@
 import { FC } from 'react';
-import {ImageList, ImageListItem, Box, Button} from '@mui/material';
+import {ImageList, ImageListItem, Box, IconButton} from '@mui/material';
 import { useSize } from '../hooks/useSize';
-import { useAppSelector } from '../../hooks/useAppSelector';
 import { useAppDispatch } from '../../hooks/useAppDispatch';
+import { OutImageDialog } from '../Dialogs/OutImageDialog';
+import { useCards } from '../hooks/useCards';
+import { useAppSelector } from '../../hooks/useAppSelector';
+import SearchIcon from '@mui/icons-material/Search';
+import CollectionsIcon from '@mui/icons-material/Collections';
 
 export const OutputImage: FC = () => {
-    const { height, width, displayWidthPattern } = useSize();
+    const { height, width } = useSize();
     const dispatch = useAppDispatch()
-    const selectedCards = useAppSelector(({cards}) => cards.selectedCards);
-
+    const {selectedCards, isLoading} = useCards();
+    const selectedMultipleCategory = useAppSelector(({categories}) => categories.selectedMultipleCategory);
     if (!selectedCards) return <></>
 
   return (
-    <Box>
+    <Box sx={{display: "flex", justifyContent: "center", alignItems: "center", flexDirection: "column"}}>
     <ImageList sx={{}} cols={3}>
       {selectedCards.map((v, i) => (
         <ImageListItem sx={{height: height, width: width}} key={i}>
@@ -25,15 +29,42 @@ export const OutputImage: FC = () => {
         </ImageListItem>
       ))}
     </ImageList>
-    <Button
+    <IconButton
+      onClick={() => {
+        if (selectedMultipleCategory) {
+          dispatch(({cardsPage}) => cardsPage.deleteData());
+          dispatch(({cardsPage}) => cardsPage.postMultiData(selectedMultipleCategory));
+        }
+      }}
+      sx={{
+        display: selectedMultipleCategory?.length === 0 || isLoading ? "none" : undefined,
+        position: "fixed",
+        bottom: "90%",
+        left: "82%",
+        color: "#000000",
+        background: "#00FEBB",
+        width: "60px",
+        height: "60px",
+    }}>
+      <SearchIcon />
+    </IconButton>
+    <IconButton
+      onClick={() => {
+        dispatch(({cardsPage}) => cardsPage.setDialog(true));
+      }}
       sx={{
         display: selectedCards.length === 0 ? "none" : undefined,
         position: "fixed",
-        bottom: "1%",
-        right: displayWidthPattern === "xs" ? "2%" : "10%",
+        bottom: "5%",
+        left: "5%",
         color: "#000000",
-        background: "#00ff00"
-    }}>{"生成"}</Button>
+        background: "#00ff00",
+        width: "60px",
+        height: "60px",
+    }}>
+      <CollectionsIcon />
+    </IconButton>
+    <OutImageDialog />
     </Box>
   );
 }

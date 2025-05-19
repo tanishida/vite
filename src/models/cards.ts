@@ -1,10 +1,13 @@
+export interface CardsDetail {
+    name: string;
+    url: string;
+    categoryId: string;
+    categoryName: string;
+}
 export interface Cards {
-    cards: {
-        name: string;
-        url: string;    
-    }[];
-    selectedCards?: {
-        name: string;
-        url: string;    
-    }[];
+    cards: CardsDetail[];
+    isLoading: boolean;
+    isOpen: boolean;
+    selectedCards?: CardsDetail[];
+    outImageDialog?: boolean;
 };

@@ -9,7 +9,7 @@ import rootSaga from '../redux/sagas/sagas';
 const sagaMiddleware = createSagaMiddleware();
 
 export const actionCreator = {
-  catogoriesPage: {
+  categoriesPage: {
     ...categoriesModule.actions,
     ...categoriesSagaModule.actions
   },

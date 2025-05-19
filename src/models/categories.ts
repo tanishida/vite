@@ -2,10 +2,13 @@ export interface Url {
     url: string;
 };
 
+export interface CategoryDetail  {
+    name: string;
+    value: string;
+}
+
 export interface Caterogires {
-    categories: {
-        name: string;
-        value: string;
-    }[];
-    selectedCategory?: string;
+    categories: CategoryDetail[];
+    selectedCategory?: CategoryDetail;
+    selectedMultipleCategory?: CategoryDetail[];
 };
