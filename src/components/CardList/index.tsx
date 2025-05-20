@@ -20,7 +20,6 @@ export const CardList: FC = () => {
     <Autocomplete
       open={isOpen}
       sx={{maxWidth: textFieldWidth, top: 0, zIndex: 1, margin: "20px"}}
-      limitTags={9}
       disableCloseOnSelect
       disabled={selectedMultipleCategory?.length === 0 || categories.length === 0 || isLoading || cards.length === 0}
       noOptionsText={"見つかりません"}
@@ -51,10 +50,9 @@ export const CardList: FC = () => {
       options={cards}
       loading={isLoading}
       multiple
-      renderOption={(props, option, {selected, index}) => (
+      renderOption={(props, option, {index}) => (
         <MenuItem 
           {...props} 
-          disabled={!selected && selectedCards && selectedCards?.length >= 9} 
           key={index}
         >
           {option.name}
@@ -63,7 +61,7 @@ export const CardList: FC = () => {
       renderInput={(params) => (
         <TextField
           {...params}
-          label={isLoading ? "検索中..." : "カードを選択（最大９枚まで）"}
+          label={isLoading ? "検索中..." : "カードを選択"}
           slotProps={{
             input: {
               ...params.InputProps,
