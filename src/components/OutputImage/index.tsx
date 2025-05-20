@@ -17,6 +17,7 @@ export const OutputImage: FC = () => {
   return (
     <Box sx={{display: "flex", justifyContent: "center", alignItems: "center", flexDirection: "column"}}>
     <OutImageList />
+    <Box sx={{mt: 20}} />
     <IconButton
       onClick={() => {
         dispatch(({cardsPage}) => cardsPage.setOpen(false))

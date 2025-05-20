@@ -9,7 +9,6 @@ export const InputImages: FC = () => {
     <Box>
       <MultipleCategories />
       <CardList />
-      
     </Box>
   );
 }

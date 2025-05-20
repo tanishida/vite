@@ -5,7 +5,7 @@ import { Box } from '@mui/material';
 
 const App = () => {
   return (
-    <Box>
+    <Box sx={{overflow: "auto"}}>
       <InputImages />
       <OutputImage />
     </Box>
